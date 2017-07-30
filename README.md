@@ -12,6 +12,8 @@ github:
   - xnuk/to
 ```
 
+And just use `to` instead of `cd`.
+
 ## Additional Feature
 - If you used `pushd`, then `$ to` works as `popd; ls`.
 - Or if you are in git directory, then it goes to git root.
