@@ -2,13 +2,17 @@ function to
   # if argument does not exist
   if not count $argv > /dev/null
     if not popd ^ /dev/null
-      # jump to git root or $HOME
-      set -l __git_cdup (git rev-parse --show-cdup ^ /dev/null; or echo)
-      if [ $__git_cdup = '' ]
-        cd ..
-        cd (git rev-parse --show-toplevel ^ /dev/null; or echo $HOME)
+      if type -q git
+        # jump to git root or $HOME
+        set -l __git_cdup (git rev-parse --show-cdup ^ /dev/null; or echo)
+        if [ $__git_cdup = '' ]
+          cd ..
+          cd (git rev-parse --show-toplevel ^ /dev/null; or echo $HOME)
+        else
+          cd $__git_cdup
+        end
       else
-        cd $__git_cdup
+        cd $HOME
       end
     end
 
