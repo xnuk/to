@@ -5,7 +5,7 @@ function to
       if type -q git
         # jump to git root or $HOME
         set -l __git_cdup (git rev-parse --show-cdup 2>/dev/null; or echo)
-        if [ $__git_cdup = '' ]
+        if [ "$__git_cdup" = '' ]
           cd ..
           cd (git rev-parse --show-toplevel 2>/dev/null; or echo $HOME)
         else
